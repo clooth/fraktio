@@ -22,10 +22,6 @@ export default class BlogScreen extends Component {
     })
   }
 
-  goBackHome = () => {
-    this.props.navigator.pop();
-  }
-
   componentDidMount() {
     this.fetchData()
   }
