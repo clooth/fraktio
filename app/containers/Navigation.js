@@ -1,3 +1,4 @@
+// External
 import React, { Component, PropTypes } from 'react';
 import {
   StyleSheet,
@@ -5,7 +6,9 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
+// Internal
 import Router from 'router';
 import { primaryColor, tintColor } from 'constants/colors';
 import colors from 'constants/colors';
@@ -35,7 +38,15 @@ export default class Navigation extends React.Component {
           <TabItem
             id="presentations"
             title="Presikset"
-            selectedStyle={styles.selectedTab}>
+            selectedStyle={styles.selectedTab}
+            renderIcon={selected =>
+              <Icon
+                name={selected ? 'ios-videocam' : 'ios-videocam-outline'}
+                size={18}
+                color={selected ? colors.primary : '#222'}
+              />
+            }
+          >
             <StackNavigation
               id="presentations"
               defaultRouteConfig={defaultRouteConfig}
@@ -46,7 +57,15 @@ export default class Navigation extends React.Component {
           <TabItem
             id="blog"
             title="Blogi"
-            selectedStyle={styles.selectedTab}>
+            selectedStyle={styles.selectedTab}
+            renderIcon={selected =>
+              <Icon
+                name={selected ? 'ios-paper' : 'ios-paper-outline'}
+                size={18}
+                color={selected ? colors.primary : '#222'}
+              />
+            }
+          >
             <StackNavigation
               id="blog"
               defaultRouteConfig={defaultRouteConfig}
@@ -57,7 +76,15 @@ export default class Navigation extends React.Component {
           <TabItem
             id="people"
             title="Ihmiset"
-            selectedStyle={styles.selectedTab}>
+            selectedStyle={styles.selectedTab}
+            renderIcon={selected =>
+              <Icon
+                name={selected ? 'ios-body' : 'ios-body-outline'}
+                size={18}
+                color={selected ? colors.primary : '#222'}
+              />
+            }
+          >
             <StackNavigation
               id="people"
               defaultRouteConfig={defaultRouteConfig}
@@ -72,6 +99,6 @@ export default class Navigation extends React.Component {
 
 const styles = StyleSheet.create({
   selectedTab: {
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#f8f8f8'
   }
 })
