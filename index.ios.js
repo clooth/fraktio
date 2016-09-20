@@ -8,25 +8,48 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
+  ListView,
   Text,
   View
 } from 'react-native';
 
+const POSTS_URL = 'https://fraktio.fi/wp-json/wp/v2/posts';
+
 class Fraktio extends Component {
+  constructor(props) {
+    super(props)
+
+    const dataSource = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1.id !== r2.id
+    });
+
+    this.state = {
+      dataSource
+    };
+  }
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
+  fetchData() {
+    fetch(POSTS_URL)
+      .then(response => response.json())
+      .then(responseJSON => {
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(responseJSON)
+        })
+      })
+      .done()
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <ListView
+        style={styles.container}
+        dataSource={this.state.dataSource}
+        renderRow={(data) => <View><Text>{data.title.rendered}</Text></View>}
+      />
     );
   }
 }
@@ -34,19 +57,8 @@ class Fraktio extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    marginTop: 20,
+    flexDirection: 'row',
   },
 });
 
