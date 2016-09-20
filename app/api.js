@@ -1,4 +1,5 @@
 import axios from 'axios';
+import moment from 'moment';
 
 // Create new axios client with a base url
 const client = axios.create({
@@ -28,7 +29,7 @@ export const fetchPresentations = () =>
       id,
       title: title.rendered,
       content: content.rendered,
-      date: acf.presentations_date,
+      date: moment(acf.presentations_date, 'YYYYMMDD').unix(),
       presenter: {
         name: acf.presenters_name,
         company: acf.presenters_company,
