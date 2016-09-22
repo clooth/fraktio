@@ -44,9 +44,9 @@ export const fetchPeople = () =>
     .then(res => res.data)
     .then(res => res.map(({ id, acf }) => ({
       id,
-      first_name: acf.person_first_name,
-      last_name: acf.person_last_name,
+      firstName: acf.person_first_name,
+      lastName: acf.person_last_name,
       nickname: acf.person_nickname,
       title: acf.person_job_title,
-      photo_url: acf.person_photo.sizes.square
+      photoUrl: acf.person_photo.sizes.smallsquare
     })));

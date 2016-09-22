@@ -4,11 +4,11 @@ import {
   ScrollView,
   View,
   StyleSheet,
-  Image,
-  Dimensions,
 } from 'react-native';
 
+import { fetchPeople } from 'api';
 import Router from 'router';
+import People from 'components/People';
 
 export default class PeopleScreen extends Component {
   static route = {
@@ -18,31 +18,16 @@ export default class PeopleScreen extends Component {
   }
 
   state = {
-    people: []
+    people: [],
   }
 
   componentDidMount() {
-    fetch('https://fraktio.fi/wp-json/wp/v2/people')
-      .then(results => results.json())
+    fetchPeople()
       .then(people => this.setState({ people }))
-      .done()
   }
 
   render() {
-    const { people } = this.state;
-    return (
-      <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.scrollContainer}>
-          {people.map(person =>
-            <Image
-              key={person.id}
-              style={styles.image}
-              source={{ uri: person.acf.person_photo.sizes.smallsquare }}
-            />
-          )}
-        </ScrollView>
-      </View>
-    )
+    return <People people={this.state.people} />
   }
 }
 
@@ -54,8 +39,4 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
-  image: {
-    width: Dimensions.get('window').width / 2,
-    height: Dimensions.get('window').width / 2
-  }
 })
