@@ -8,6 +8,7 @@ import {
 
 import { fetchPosts } from 'api';
 import BlogPost from 'components/BlogPost';
+import Router from 'router';
 
 export default class BlogScreen extends Component {
   static route = {
@@ -33,6 +34,10 @@ export default class BlogScreen extends Component {
       }))
   }
 
+  onViewPost = (data) => {
+    this.props.navigator.push('blogPostFull', data);
+  }
+
   render() {
     return (
       <ListView styles={styles.container}
@@ -41,6 +46,7 @@ export default class BlogScreen extends Component {
           title={data.title}
           content={data.excerpt}
           date={data.date}
+          onViewPost={() => this.onViewPost(data)}
         />}
       />
     )
