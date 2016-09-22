@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import moment from 'moment';
 
 import colors from 'constants/colors';
@@ -7,30 +7,37 @@ import HTMLView from 'react-native-htmlview';
 
 moment.locale('fi');
 
-export default ({ title, date, content, onViewPost }) => {
-  const formattedDate = moment(date).format('LL');
+export default class BlogPostFull extends Component {
+  static route = {
+    navigationBar: {
+      title(params) {
+        return params.title
+      },
+    }
+  }
 
-  const formattedText = content
-    .replace(new RegExp('<p>', 'g'), '<span>')
-    .replace(new RegExp('</p>', 'g'), '</span>');
+  render() {
+    const { title, date, content } = this.props;
+    const formattedDate = moment(date).format('LL');
 
-  return (
-    <TouchableOpacity style={styles.container} onPress={onViewPost}>
-      <View>
+    const formattedText = content
+      .replace(new RegExp('<p>', 'g'), '<span>')
+      .replace(new RegExp('</p>', 'g'), '</span>');
+
+    return (
+      <ScrollView style={styles.container}>
         <View style={styles.title}>
           <Text style={styles.titleText}>{title}</Text>
           <Text style={styles.titleDate}>{formattedDate}</Text>
         </View>
         <HTMLView style={styles.content} value={formattedText} />
-        <View style={styles.separator} />
-      </View>
-    </TouchableOpacity>
-  )
-};
+      </ScrollView>
+    )
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column',
     padding: 20,
     paddingBottom: 0
   },
@@ -54,11 +61,4 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: 'right'
   },
-
-  separator: {
-    height: 1,
-    backgroundColor: '#f8f8f8',
-    marginTop: 10,
-    marginBottom: 10
-  }
 });
