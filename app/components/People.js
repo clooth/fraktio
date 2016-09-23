@@ -19,11 +19,11 @@ export default ({ people }) => (
       {people.map(person =>
         <Person
           key={person.id}
-          firstName={person.firstName}
-          lastName={person.lastName}
+          firstName={person.first_name}
+          lastName={person.last_name}
           nickname={person.nickname}
           title={person.title}
-          image={person.photoUrl}
+          image={person.photo_url}
         />
       )}
     </ScrollView>
