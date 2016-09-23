@@ -8,8 +8,6 @@ import {
   Dimensions,
 } from 'react-native';
 
-const { width } = Dimensions.get('window');
-
 import colors from 'constants/colors';
 
 export default class Person extends Component {
@@ -93,6 +91,7 @@ export default class Person extends Component {
   }
 }
 
+const { width } = Dimensions.get('window');
 const calculatedSize = width / 2;
 
 const styles = StyleSheet.create({
