@@ -30,11 +30,17 @@ export default class BlogPostFull extends Component {
           <Text style={styles.titleText}>{title}</Text>
           <Text style={styles.titleDate}>{formattedDate}</Text>
         </View>
-        <HTMLView style={styles.content} value={formattedText} />
+        <HTMLView stylesheet={contentStyles} value={formattedText} />
       </ScrollView>
     )
   }
 }
+
+const contentStyles = StyleSheet.create({
+  a: {
+    color: colors.primary,
+  }
+})
 
 const styles = StyleSheet.create({
   container: {
