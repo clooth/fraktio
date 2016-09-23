@@ -1,3 +1,4 @@
+// External
 import React, { Component } from 'react';
 import {
   Text,
@@ -6,7 +7,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import Router from 'router';
+// Internal
 import Person from 'components/Person';
 
 export default ({ people }) => (

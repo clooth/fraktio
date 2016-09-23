@@ -1,7 +1,14 @@
+// External
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import moment from 'moment';
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity
+} from 'react-native';
 
+// Internal
 import colors from 'constants/colors';
 import HTMLView from 'react-native-htmlview';
 

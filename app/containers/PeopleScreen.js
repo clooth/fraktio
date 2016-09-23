@@ -1,7 +1,8 @@
+// External
 import React, { Component } from 'react';
 
+// Internal
 import { fetchPeople } from 'api';
-import Router from 'router';
 import People from 'components/People';
 
 export default class PeopleScreen extends Component {
