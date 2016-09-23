@@ -1,3 +1,4 @@
+// External
 import React, { Component } from 'react';
 import {
   Text,
@@ -8,6 +9,7 @@ import {
   Dimensions,
 } from 'react-native';
 
+// Internal
 import colors from 'constants/colors';
 
 export default class Person extends Component {

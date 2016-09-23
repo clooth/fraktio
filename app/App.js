@@ -14,7 +14,7 @@ export default class App extends Component {
         <StatusBar
           backgroundColor="rgba(0,0,0,.15)"
           barStyle="light-content"
-         />
+        />
         <Navigation />
       </View>
     );

@@ -1,3 +1,4 @@
+// External
 import React, { Component } from 'react';
 import {
   Text,
@@ -6,9 +7,9 @@ import {
   StyleSheet,
 } from 'react-native';
 
+// Internal
 import { fetchPosts } from 'api';
 import BlogPost from 'components/BlogPost';
-import Router from 'router';
 
 export default class BlogScreen extends Component {
   static route = {
